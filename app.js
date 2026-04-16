@@ -13,10 +13,22 @@ fetch("words.csv")
   });
 
 function parseCSV(text) {
-  return text.trim().split("\n").map(line => {
-    const [word, meaning] = line.split("\t");
-    return { word, meaning };
-  });
+  return text
+    .trim()
+    .split("\n")
+    .map(line => line.trim())
+    .filter(line => line.length > 0)
+    .map(line => {
+      const parts = line.split("\t");
+
+      if (parts.length < 2) return null;
+
+      return {
+        word: parts[0].trim(),
+        meaning: parts[1].trim()
+      };
+    })
+    .filter(Boolean);
 }
 
 function showWord() {
