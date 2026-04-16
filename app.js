@@ -14,7 +14,7 @@ fetch("words.csv")
 
 function parseCSV(text) {
   return text.trim().split("\n").map(line => {
-    const [word, meaning] = line.split(",");
+    const [word, meaning] = line.split("\t");
     return { word, meaning };
   });
 }
