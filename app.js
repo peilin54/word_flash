@@ -7,6 +7,9 @@ fetch("words.csv")
   .then(res => res.text())
   .then(data => {
     words = parseCSV(data);
+
+    console.log(words.slice(0, 10));
+
     filtered = [...words];
     index = 0;
     showWord();
