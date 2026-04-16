@@ -63,12 +63,24 @@ function randomWord() {
   showWord();
 }
 
-// Search
+// // Search
+// document.getElementById("search").addEventListener("input", (e) => {
+//   const q = e.target.value.toLowerCase();
+
+//   filtered = words.filter(w =>
+//     w.word.toLowerCase().includes(q)
+//   );
+
+//   index = 0;
+//   showWord();
+// });
 document.getElementById("search").addEventListener("input", (e) => {
-  const q = e.target.value.toLowerCase();
+  const q = e.target.value.toLowerCase().trim();
+
+  if (!words || words.length === 0) return;
 
   filtered = words.filter(w =>
-    w.word.toLowerCase().includes(q)
+    (w.word ?? "").toLowerCase().includes(q)
   );
 
   index = 0;
