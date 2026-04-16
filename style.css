@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  touch-action: pan-y;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+#search {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.card {
+  background: white;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  min-height: 180px;
+
+  /* helps swipe feel smoother */
+  transition: transform 0.2s ease;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+#word {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+#meaning {
+  font-size: 18px;
+  color: #444;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
