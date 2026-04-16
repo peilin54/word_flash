@@ -73,19 +73,54 @@ function randomWord() {
 
 //   index = 0;
 //   showWord();
+// // });
+// document.getElementById("search").addEventListener("input", (e) => {
+//   const q = e.target.value.toLowerCase().trim();
+
+//   if (!words || words.length === 0) return;
+
+//   filtered = words.filter(w =>
+//     (w.word ?? "").toLowerCase().includes(q)
+//   );
+
+//   index = 0;
+//   showWord();
 // });
 document.getElementById("search").addEventListener("input", (e) => {
   const q = e.target.value.toLowerCase().trim();
 
-  if (!words || words.length === 0) return;
+  const resultsEl = document.getElementById("results");
 
-  filtered = words.filter(w =>
+  if (!q) {
+    resultsEl.innerHTML = "";
+    return;
+  }
+
+  const matches = words.filter(w =>
     (w.word ?? "").toLowerCase().includes(q)
   );
 
-  index = 0;
-  showWord();
+  renderResults(matches);
 });
+
+function renderResults(list) {
+  const resultsEl = document.getElementById("results");
+
+  resultsEl.innerHTML = list.slice(0, 20).map((item, i) => `
+    <div class="result-item" onclick="selectWord(${words.indexOf(item)})">
+      <div class="result-word">${item.word}</div>
+      <div class="result-meaning">${item.meaning}</div>
+    </div>
+  `).join("");
+}
+
+function selectWord(globalIndex) {
+  index = globalIndex;
+  filtered = words;
+  document.getElementById("results").innerHTML = "";
+  document.getElementById("search").value = "";
+  showWord();
+}
 
 // Swipe support
 let startX = 0;
