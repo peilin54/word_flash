@@ -13,10 +13,20 @@ fetch("words.csv")
   });
 
 function parseCSV(text) {
-  return text.trim().split("\n").map(line => {
-    const [word, meaning] = line.split(",");
-    return { word, meaning };
-  });
+  return text
+    .trim()
+    .split("\n")
+    .map(line => {
+      // split on ; but only at top level (safe for quoted values)
+      const parts = line.split(";").map(p =>
+        p.trim().replace(/^"|"$/g, "") // remove surrounding quotes
+      );
+
+      const [word, meaning] = parts;
+
+      return { word, meaning };
+    })
+    .filter(item => item.word && item.meaning);
 }
 
 function showWord() {
